@@ -1,0 +1,113 @@
+# oop1_ex1
+OOP1 course ex1
+
+
+===========================================================================================
+Classes:
+
+Characters:
+
+The King = K
+	- GOAL: to sit on chair
+	- represented on the board as the letter K
+	- can walk on empty tiles or tiles with a key on it (cant pick up key)
+	- can enter teleport cell
+	- can sit on chair
+
+Mage = M
+	- Fancy tools: can put out fires by stepping on tiles on fire (turns them to empty tiles)
+	- can step on empty tiles (and obv those with fire)
+	- can step on tiles with key (cant pick them up)
+	- can stand on teleport cell but not use it 
+
+Warrior = W
+	- fancy tools: can fight off orcs like a boss HE ALWAYS WINS
+	- turns orc into key upon killing it, tile turns to tile key
+	- can step on empty tiles and ones with orcs, thats how he kills em yall
+	- can step on tiles with key (cant pick them up)
+	- can enter teleport cell
+
+Theif = T
+	- fancy tools: can take keys and open gates with them
+	- all keys open all gates (can only hold one key at a time)
+	- can step on empty tiles 
+	- can step on tiles with key
+	- can enter teleport cell 
+	- can step on tiles with gates *if* he has a key (changes it to empty tile)
+
+Types of Tiles:
+
+Empty Tile = "space"
+	- tile with no objects or characters
+
+Wall = "="
+	- no characters can pass 
+
+Gate = "#"
+	- only theif can step on it if he has a key
+	- he can go through it and then the tile turns to empty tile
+
+Fire = "*"
+	- only mage can step on it, blocks others
+	- if mage steps on it, tile will turn to empty tile
+
+
+Teleport Cell = "X"
+	- type of tile that comes in pairs
+	- all charaters (excluding mage) that enters cell, teleports immediately to
+		parallel port - character disapears from one appears in the other(or next to)
+	- WE CHOOSE IF TELEPORTS INTO OR NEXT TO 
+	- the tile that the character teleports to is considered the original teleport cell's "partner"
+	- mage cant use but can step on
+	- teleports cells are exclusive
+
+Kings Throne = "@"
+	- only king can sit on the throne
+	- thats how WE WIN THE GAME YO
+
+Additional Objects:
+
+Orc = "!"
+	- blocks all characters (cannot pass the tile he is standing, other than warrior)
+	- if warrior comes and kills him, a key "falls from his pocket" -> tile turns to one with key
+
+Key = F
+	- falls from orc when warrior kills it 
+	- theif can take it
+
+
+===========================================================================================
+
+HOW WE CRY
+
+Keys
+	- P =  changes between characters in a cyclical way
+	- Arrows = moves charater on board, unless not allowed
+	- Escape = ends game
+
+Ending Level/Game
+	- a level ends when king sits on thrown
+	- a message appears at the end of each level/at the end of the game
+
+Game Levels
+	- at least 3 levels
+	- each level will receive required information from file
+	- explanation of files in readme
+
+Game Board
+	- after each action the board is updated on the screen (including change in active characer)
+	- under is printed: 
+		1. name of active character
+		2. sum of number of steps taken (of all characters)
+		3. if the theif has the key or not
+	- if two objects take up the same space, present the character over the static
+
+===========================================================================================
+
+Notes for Mee-Moosh
+
+
+
+
+
+
