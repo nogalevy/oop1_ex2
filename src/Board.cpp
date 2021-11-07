@@ -2,9 +2,3 @@
 
 
 
-class Board
-{
-public:
-
-private:
-};

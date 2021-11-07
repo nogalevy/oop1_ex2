@@ -95,7 +95,7 @@ Game Levels
 	- explanation of files in readme
 
 Game Board
-	- after each action the board is updated on the screen (including change in active characer)
+	- after each action the board is updated on the screen (including change in active character)
 	- under is printed: 
 		1. name of active character
 		2. sum of number of steps taken (of all characters)
@@ -104,8 +104,7 @@ Game Board
 
 ===========================================================================================
 
-Notes for Mee-Moosh
-
+Notes for Mee-Moosh 
 
 
 
