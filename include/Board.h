@@ -9,27 +9,15 @@ class Board
 {
 public:
 	//constructor = builds initial board of level
+	void printToConsole() const;
 	void printBoard() const;
+
 private:
-	char m_board[SIZE][SIZE];
-	void printGameData();
+	char m_board[SIZE][SIZE]; //CHANGE to vector type char (size = from level file)
+
+
+	void printGameData() const;
+	void printBoard() const;
+
 	//player
 };
-
-void Board::printBoard()
-{
-	for (int i = 0; i < SIZE; i++)
-	{
-		for (int j = 0; j < SIZE; j++)
-			cout << m_board[i][j];
-		cout << endl;
-	}
-	printGameData();
-}
-
-void Board::printGameData()
-{
-	//name of active character
-	//sum of all steps taken of all characters
-	//if the theif has the key
-}

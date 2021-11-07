@@ -17,5 +17,5 @@ private:
 
 void Controller::changeActiveCharacter()
 {
-	
+
 }
