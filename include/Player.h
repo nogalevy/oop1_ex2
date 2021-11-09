@@ -2,7 +2,7 @@
 
 enum Characters { King, Mage, Theif, Warrior };
 
-
+/*
 
 class Player
 {
@@ -21,3 +21,5 @@ int Player::getActiveCharacter() const
 {
 	return m_activeCharacter;
 }
+
+*/
