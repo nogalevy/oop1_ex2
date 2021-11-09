@@ -10,3 +10,13 @@
 //
 // end level - prints 'GOOD FOR YOU YALLA NEXT ->' (need to type enter or something ?)
 // open next file ....
+
+
+#include <iostream>
+#include <string>
+
+int main()
+{
+
+	return EXIT_SUCCESS;
+}
