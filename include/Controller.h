@@ -1,7 +1,7 @@
 #pragma once
 
 #include "King.h"
-#include ".h"
+//#include ".h"
 
 /*
 if we have enum, we can just ++ it to move to next, then in switch case in controller, call 
@@ -18,7 +18,7 @@ public:
 	Controller();
 	void run();
 	//change character
-	void changeActiveCharacter();
+	//void changeActiveCharacter();
 	int getSteps()const;
 private:
 	//Player m_player;
@@ -28,10 +28,12 @@ private:
 
 Controller::Controller() : //initialize num of steps etc
 
+	/*
 void Controller::changeActiveCharacter()
 {
 	//checks current player, moves to next one (enum?)
 }
+	*/
 
 int Controller::getSteps()const
 {

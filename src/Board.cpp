@@ -17,9 +17,11 @@ void Board::printBoard() const
 	}
 }
 
-void Board::printGameData()
+
+void Board::printGameData() const
 {
 	//name of active character
 	//sum of all steps taken of all characters
 	//if the theif has the key
 }
+
