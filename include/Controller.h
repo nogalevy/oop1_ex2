@@ -1,26 +1,73 @@
 #pragma once
 
+#include "utilities.h"
 #include "Player.h"
 #include "King.h"
 #include "Mage.h"
 #include "Warrior.h"
 #include "Theif.h"
 #include "Board.h"
+
 #include <string>
 
+#include <iostream>
+#include <cstdlib> // for std::system()
+#include "io.h"
+
+#include <conio.h>
+#include <vector>
+#include <string>
+
+enum Keys
+{
+	KB_Escape = 27,
+	SpecialKey = 224,
+};
+
+enum SpecialKeys
+{
+	KB_Up = 72,
+	KB_Down = 80,
+	KB_Left = 75,
+	KB_Right = 77,
+};
 
 class Controller
 {
 public:
+<<<<<<< Updated upstream
 	Controller(); //initialize board, game characters, num of steps, active character
-	void run(); //
-	string getActiveCharacterName();
+	void run(std::string level); //
+	std::string getActiveCharacterName()const;
+	auto getActiveCharacter()const;
 	void changeActiveCharacter();
+=======
+	Controller(std::string level); //initialize board, game characters, num of steps, active character
+	void run(); //
+	std::string getActiveCharacterName()const;
+	auto changeActiveCharacter();
+
+>>>>>>> Stashed changes
 	int getSteps()const;
 	void increaseNumOfSteps();
+
+
+	//io
+	bool readInput();
 private:
-	auto m_activeCharacter;
-	string m_activeCharacterName;
+<<<<<<< Updated upstream
+	Characters m_activeCharacter;
+	std::string m_activeCharacterName;
+=======
+
+	bool handleRegularKey(int c);
+	void handleSpecialKey(std::vector<std::string>& v, int& col, int& row);
+
+
+	Characters m_active_character;
+	void print_b(std::vector<std::string> v);
+
+>>>>>>> Stashed changes
 	int m_numOfSteps;
 	King m_king;
 	Mage m_mage;
@@ -30,55 +77,7 @@ private:
 	Board m_board;
 
 };
+<<<<<<< Updated upstream
+=======
 
-Controller::Controller(level) : m_numOfSteps(0), m_king(King())
-{
-	//m_board = Board(level);
-}
-
-void Controller::run(char* level)
-{
-	m_board = board(level);
-}
-
-	/*
-void Controller::changeActiveCharacter()
-{
-	switch (m_activeCharacterName)
-	{
-	case 0:
-		m_activeCharacter =
-	}
-}
-	*/
-
-int Controller::getSteps()const
-{
-	return m_numOfSteps;
-}
-
-string Controller::getActiveCharacterName()
-{
-	switch (m_activeCharacterName)
-	{
-	case 0:
-		return "King";
-		break;
-	case 1:
-		return "Mage";
-		break;
-	case 2:
-		return "Warrior";
-		break;
-	case 3:
-		return "Theif";
-		break;
-	default:
-		return "idk";
-	}
-}
-
-void Controller::increaseNumOfSteps()
-{
-	m_numOfSteps++;
-}
+>>>>>>> Stashed changes

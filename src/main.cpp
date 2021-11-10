@@ -11,17 +11,12 @@
 // end level - prints 'GOOD FOR YOU YALLA NEXT ->' (need to type enter or something ?)
 // open next file ....
 
-#include <iostream>
-#include <cstdlib> // for std::system()
 #include "io.h"
-
-#include <conio.h>
-#include <vector>
-#include <string>
 #include "Controller.h"
 
-int const NUM_OF_LEVELS = 1;
 
+
+/*
 enum Keys
 {
     KB_Escape = 27,
@@ -36,17 +31,23 @@ enum SpecialKeys
     KB_Right = 77,
 };
 
-bool handleRegularKey(int c);
-void handleSpecialKey(std::vector<std::string> &v, int &k_col, int &k_row);
+*/
+//bool handleRegularKey(int c);
+//void handleSpecialKey(std::vector<std::string> &v, int &k_col, int &k_row);
 void print_b(std::vector<std::string> v);
 
 int main()
 {
 	Controller c;
 
+	for(int i = 1; i <= NUM_OF_LEVELS; i++)
+	{
+		std::string level = "level" + std::to_string(i) + ".txt";
+		c.run(level);
+	}
 	//for(int i = 1; i <= NUM_OF_LEVELS; i++)
 		//c.run(level);
-
+    bool exit = false;
     std::vector<std::string> v = { "=======",
                                 "=     =",
                                 "=     =",
@@ -58,16 +59,16 @@ int main()
     int k_col = 5;
     int k_row = 5;
 
-    std::cout << "Game Data:\n";
     std::system("cls");
     Screen::resetLocation();
 
     //print v
     print_b(v);
 
-    for (auto exit = false; !exit; )
+    while (!exit)
     {
-        Screen::resetLocation();
+        //exit = c.readInput();
+       /* Screen::resetLocation();
 
         auto c = _getch();
         switch (c)
@@ -80,7 +81,8 @@ int main()
             exit = handleRegularKey(c);
             break;
         }
-        
+
+        */
     }
 }
 
@@ -91,51 +93,54 @@ void print_b(std::vector<std::string> v)
         std::cout << v[i] << "\n";
     }
 }
-
-bool handleRegularKey(int c)
-{
-    switch (c)
-    {
-    case 'P':
-        std::cout << "A pressed\n";
-        break;
-    case KB_Escape:
-        std::cout << "Escape pressed. Exiting...\n";
-        return true;
-    default:
-        std::cout << "Unknown regular key pressed (code = " << c << ")\n";
-        break;
-    }
-    return false;
-}
-
-void handleSpecialKey(std::vector<std::string> &v, int &k_col, int &k_row)
-{
-    auto c = _getch();
-    switch (c)
-    {
-    case KB_Up:
-        if (k_row - 1 > 0)
-        {
-            k_row = k_row - 1;
-            v[k_row + 1][k_col] = ' ';
-            v[k_row][k_col] = 'K';
-            print_b(v);
-        }
-
-
-        break;
-    case KB_Down:
-        std::cout << "Arrow Down pressed\n";
-        break;
-    case KB_Left:
-        std::cout << "Arrow Left pressed\n";
-        break;
-    case KB_Right:
-        std::cout << "Arrow Right pressed\n";
-        break;
-    default:
-        std::cout << "Unknown special key pressed (code = " << c << ")\n";
-        break;
-    }
-}
+//
+//bool handleRegularKey(int c)
+//{
+//    switch (c)
+//    {
+//    case 'P':
+//    case 'p':
+//        std::cout << "A pressed\n";
+//        break;
+//    case KB_Escape:
+//        std::cout << "Escape pressed. Exiting...\n";
+//        return true;
+//    default:
+//        std::cout << "Unknown regular key pressed (code = " << c << ")\n";
+//        break;
+//    }
+//    return false;
+//}
+//
+//void handleSpecialKey(std::vector<std::string> &v, int &k_col, int &k_row)
+//{
+//    auto c = _getch();
+//    switch (c)
+//    {
+//    case KB_Up:
+//        if (k_row - 1 > 0) //check is valid
+//        {
+//            k_row = k_row - 1;
+//            v[k_row + 1][k_col] = ' ';
+//            v[k_row][k_col] = 'K';
+//            //save tile
+//            //++steps
+//            print_b(v);
+//        }
+//
+//
+//        break;
+//    case KB_Down:
+//        std::cout << "Arrow Down pressed\n";
+//        break;
+//    case KB_Left:
+//        std::cout << "Arrow Left pressed\n";
+//        break;
+//    case KB_Right:
+//        std::cout << "Arrow Right pressed\n";
+//        break;
+//    default:
+//        std::cout << "Unknown special key pressed (code = " << c << ")\n";
+//        break;
+//    }
+//}

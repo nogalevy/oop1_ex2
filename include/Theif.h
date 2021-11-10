@@ -2,19 +2,33 @@
 
 #include "Location.h"
 
+class Controller;
+
 class Theif
 {
+<<<<<<< Updated upstream
 public:
-	Theif()
+	Theif();
 	Location getLocation() const;
 	void setLocation();
 	
 private:
-	bool m_hasKey; //here or in Board?
+	bool m_hasKey;
 	Location m_location;
 };
 
-Theif::Theif()
-{
+=======
+	
+	public:
+		Theif();
+		Location getLocation() const;
+		void setLocation();
 
-}
+	private:
+		bool m_hasKey; //here or in Board?
+		Location m_location;
+	};
+
+	
+
+>>>>>>> Stashed changes

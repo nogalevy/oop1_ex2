@@ -1,5 +1,7 @@
 #pragma once
 
+class Controller;
+
 class Mage
 {
 public:
@@ -8,7 +10,3 @@ public:
 private:
 };
 
-Mage::Mage()
-{
-
-}
