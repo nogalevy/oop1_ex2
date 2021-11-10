@@ -1,8 +1,18 @@
-#include "Warrior.h"
+#pragma once
+
+class Controller;
+
 
 class Warrior
 {
 public:
+	Warrior();
 
 private:
 };
+
+
+Warrior::Warrior()
+{
+
+}

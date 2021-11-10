@@ -18,6 +18,9 @@
 #include <conio.h>
 #include <vector>
 #include <string>
+#include "Controller.h"
+
+int const NUM_OF_LEVELS = 1;
 
 enum Keys
 {
@@ -39,6 +42,10 @@ void print_b(std::vector<std::string> v);
 
 int main()
 {
+	Controller c;
+
+	//for(int i = 1; i <= NUM_OF_LEVELS; i++)
+		//c.run(level);
 
     std::vector<std::string> v = { "=======",
                                 "=     =",
