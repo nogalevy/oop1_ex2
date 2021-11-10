@@ -9,6 +9,7 @@
 #include <string>
 #include <iostream>
 #include "Location.h"
+#include "Utilities.h"
 //#include "Controller.h"
 
 using std::ifstream;
@@ -27,10 +28,13 @@ public:
 	int getBoardSize() const;
 	void moveSymbol(Location loc, char symbol);
 	char getTile(Location tile)const;
+	Location getCellPartner(Location cell)const;
 
 private:
 	std::vector <std::string> m_currentBoard;
+	std::vector <struct Teleport> m_cells;
 	int m_BoardSize;
+
 
 	void printGameData(Controller& c) const;
 	void printBoard() const;

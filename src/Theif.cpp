@@ -12,15 +12,17 @@ bool Theif::isValidMove(char new_tile)
 
 	if (new_tile == '#' && m_hasKey)
 	{
-		object_on_tile = '#';
 		m_hasKey = false;
-		return true;
+		object_on_tile = ' ';
 	}
-	if (new_tile == 'F')
+	else if (new_tile == 'F' && !m_hasKey)
+	{
 		m_hasKey = true;
+		object_on_tile = ' ';
+	}
+	else
+		object_on_tile = new_tile;
 	
-	object_on_tile = ' ';
-
 	return true;
 }
 

@@ -6,3 +6,4 @@ struct Location
     int row;
     int col;
 };
+

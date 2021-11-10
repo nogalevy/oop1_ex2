@@ -7,10 +7,10 @@ bool Warrior::isValidMove(char new_tile)
 {
 	if ((new_tile == '=') || (new_tile == '#') || (new_tile == '*') || (new_tile == '@'))
 		return false;
-	if ((new_tile != '!'))
-		object_on_tile = new_tile;
+	if ((new_tile == '!'))
+		object_on_tile = 'F';
 	else
-		object_on_tile = ' ';
+		object_on_tile = new_tile;
 
 	return true;
 }

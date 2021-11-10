@@ -42,11 +42,18 @@ Board::Board(std::string level, Controller& c)
 		flevel >> row >> col;
 		Character charc = c.getActiveCharacter();
 		charc.setLocation(Location(row, col));
-
-		//c.changeActiveCharacter();
+		c.changeActiveCharacter();
 	}
 	
 	//read teleport cells
+	int num_of_cells;
+	flevel >> num_of_cells;
+	int row1, col1, row2, col2;
+	for (int j = 0; j < num_of_cells; j++)
+	{
+		flevel >> row1 >> col1 >> row2, col2;
+		m_cells.push_back({Location(row1,col1), Location(row2,col2)});
+	}
 }
 
 int Board::getBoardSize() const
@@ -77,4 +84,21 @@ void Board::moveSymbol(Location loc, char symbol)
 char Board::getTile(Location tile)const
 {
 	return m_currentBoard[tile.row][tile.col];
+}
+
+Location Board::getCellPartner(Location cell)const
+{
+	for (int i = 0; i < m_cells.size(); i++)
+	{
+		if (m_cells[i]._cellA.row == cell.row && m_cells[i]._cellA.col == cell.row)
+		{
+			cell = m_cells[i]._cellB;
+			return cell;
+		}
+		else if (m_cells[i]._cellB.row == cell.row && m_cells[i]._cellB.col == cell.row)
+		{
+			cell = m_cells[1]._cellB;
+			return cell;
+		}
+	}
 }

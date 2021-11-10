@@ -7,10 +7,11 @@ bool Mage::isValidMove(char new_tile)
 {
 	if ((new_tile == '=') || (new_tile == '#') || (new_tile == '!') || (new_tile == '@'))
 		return false;
-	if ((new_tile != '*'))
-		object_on_tile = new_tile;
-	else
+
+	if ((new_tile == '*'))
 		object_on_tile = ' ';
+	else
+		object_on_tile = new_tile;
 
 	return true;
 }
