@@ -23,10 +23,10 @@
 
 
 
-const int NUM_OF_LEVELS = 1;
 
 
 template<typename Character>
+
 int main()
 {
 	Controller c;
@@ -48,5 +48,7 @@ int main()
 			exit = c.readInput();
 		}
 	}
+
+	return EXIT_SUCCESS;
 
 }

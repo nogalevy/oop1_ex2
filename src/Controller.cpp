@@ -6,8 +6,7 @@
 
 Controller::Controller()
 	: m_numOfSteps(0), m_king(King()), m_mage(Mage()), m_warrior(Warrior()), m_theif(Theif()), m_board(NULL), m_active_character(KING)
-{
-}
+{}
 
 void Controller::run(std::string level)
 {
@@ -94,7 +93,7 @@ bool Controller::readInput()
 	{
 	case 0:
 	case SpecialKey:
-		handleSpecialKey(c);
+		exit = handleSpecialKey(c);
 		break;
 	default:
 		exit = handleRegularKey(c);
@@ -122,57 +121,33 @@ bool Controller::handleRegularKey(int c)
 }
 
 template<typename Character>
-void Controller::handleSpecialKey(int c)
+bool Controller::handleSpecialKey(int c)
 {
 	Location new_location(0, 0);
 	Character character = getActiveCharacter();
 	switch (c)
 	{
 	case KB_Up:
-		new_location = Location(character.m_location.row - 1, character.m_location.col);
-		if (character.isValidMove(m_board.getTile(new_location))) //check is valid
-		{
-			moveCharc(new_location, character);
-			//if ontile = @continue next level
-			increaseNumOfSteps();
-			//save tile
-			//++steps
-			print_b();
-		}
+		new_location = Location(character.getLocation.row - 1, character.getLocation.col);
 		break;
 	case KB_Down:
-		new_location = Location(character.m_location.row + 1, character.m_location.col); //change to get location
-		m_board.getTile(new_location);
-		if (character.isValidMove(m_board.getTile(new_location))) //check is valid
-		{
-			moveCharc(new_location, character);
-			//if ontile = @continue next level
-			increaseNumOfSteps();
-			print_b();
-		}
+		new_location = Location(character.getLocation.row + 1, character.getLocation.col); //change to get location
 		break;
 	case KB_Left:
-		new_location = Location(character.m_location.row, character.m_location.col - 1);
-		if (character.isValidMove(m_board.getTile(new_location))) //check is valid
-		{
-			moveCharc(new_location, character);
-			//if ontile = @continue next level
-			increaseNumOfSteps();
-			print_b();
-		}
+		new_location = Location(character.getLocation.row, character.getLocation.col - 1);
 		break;
 	case KB_Right:
-		new_location = Location(character.m_location.row - 1, character.m_location.col + 1);
-		if (character.isValidMove(m_board.getTile(new_location))) //check is valid
-		{
-			moveCharc(new_location, character);
-			//if ontile = @continue next level
-			increaseNumOfSteps();
-			print_b();
-		}
+		new_location = Location(character.getLocation.row - 1, character.getLocation.col + 1);
 		break;
 	default:
 		break;
+	}
+	if (character.isValidMove(m_board.getTile(new_location))) //check is valid
+	{
+		moveCharc(new_location, character);
+		//if ontile = @continue next level
+		increaseNumOfSteps();
+		print_b();
 	}
 }
 
@@ -182,12 +157,18 @@ void Controller::print_b()
 }
 
 
-void Controller::moveCharc(Location newlocation, auto character)
+template<typename Character>
+bool Controller::moveCharc(Location newlocation, Character character)
 {
+	//if teleporte type && not mage -> find new location
 	m_board.moveSymbol(newlocation, character.getSymbol());
 	m_board.moveSymbol(character.getLocation(), character.getObjectOnTile());
 	character.setLocation(newlocation);
 
-	//if theif && key update has_key
+	if (m_active_character == KING && character.getObjectOnTile() == '@')
+	{
+		return true;
+	}
+	return false;
 	//if king && @ exit = return true
 }
