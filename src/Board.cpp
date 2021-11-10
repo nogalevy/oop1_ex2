@@ -2,7 +2,7 @@
 #include "Player.h"
 #include <filesystem>
 
-using std::filesystem::current_path;
+//using std::filesystem::current_path;
 //#include <unistd.h>
 
 void Board::printToConsole(Controller& c) const
@@ -19,10 +19,10 @@ Board::Board(std::string level, Controller& c)
 	auto line = std::string();
 	int row, col;
 	char tmp[256];
-	cout << current_path() << endl;
-	std::string level_path = "../../../levels/" + level;
+	//cout << current_path() << endl;
+	//std::string level_path = "../../../levels/" + level;
 
-	flevel.open(level_path);
+	flevel.open("../../../levels/" + level);
 	if (!flevel.is_open())
 	{
 		std::cerr << "Cannont open level file\n";
@@ -58,11 +58,19 @@ void Board::printBoard()const
 
 void Board::printGameData(Controller& c) const
 {
-	cout << "Size of Board: " << m_BoardSize << endl;
-	//cout << "Current Active Character: " << endl;
-		/* << c.getActiveCharacterName() << endl;
+	cout << "Current Active Character: " << c.getActiveCharacterName() << endl;
 	cout << "Sum of number of steps: " << c.getSteps() << endl;
 	cout << "The Theif ";
-	(c.m_theif.hasKey()) ? cout << "has " : cout << "does not have ";
-	cout << "the key.\n";*/
+	(c.theifHasKey()) ? cout << "has " : cout << "does not have ";
+	cout << "the key.\n";
+}
+
+void Board::move_symbol(Location loc, char symbol)
+{
+	m_currentBoard[loc.row][loc.col] = symbol;
+}
+
+char Board::getTile(Location tile)const
+{
+	return m_currentBoard[tile.row][tile.col];
 }
