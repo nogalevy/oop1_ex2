@@ -2,19 +2,17 @@
 
 #include "Location.h"
 
+class Controller;
+
 class Theif
 {
 public:
-	Theif()
+	Theif();
 	Location getLocation() const;
 	void setLocation();
 	
 private:
-	bool m_hasKey; //here or in Board?
+	bool m_hasKey;
 	Location m_location;
 };
 
-Theif::Theif()
-{
-
-}

@@ -21,9 +21,12 @@ int const NUM_OF_LEVELS = 1;
 int main()
 {
 	Controller c;
-
-	//for(int i = 1; i <= NUM_OF_LEVELS; i++)
-		//c.run(level);
+	
+	for(int i = 1; i <= NUM_OF_LEVELS; i++)
+	{
+		std::string level = "level" + std::to_string(i) + ".txt";
+		c.run(level);
+	}
 
 	return EXIT_SUCCESS;
 }

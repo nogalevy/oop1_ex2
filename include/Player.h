@@ -1,8 +1,9 @@
 #pragma	once
 
-const int NUM_OF_CHARACTERS = 4
+const int NUM_OF_CHARACTERS = 4;
 
-enum Characters { King, Mage, Warrior, Theif };
+enum Characters { 
+	KING, MAGE, WARRIOR, THEIF };
 
 /*
 

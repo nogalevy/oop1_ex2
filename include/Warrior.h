@@ -12,7 +12,3 @@ private:
 };
 
 
-Warrior::Warrior()
-{
-
-}
