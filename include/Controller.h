@@ -7,30 +7,16 @@
 #include "Warrior.h"
 #include "Theif.h"
 #include "Board.h"
+#include "Location.h"
+#include "io.h"
 
+#include <iostream>
+
+#include <conio.h>
+#include <vector>
+#include <cstdlib>
 #include <string>
-//
-//#include <iostream>
-//#include <cstdlib> // for std::system()
-//#include "io.h"
-//
-//#include <conio.h>
-//#include <vector>
-//#include <string>
-//
-//enum Keys
-//{
-//	KB_Escape = 27,
-//	SpecialKey = 224,
-//};
-//
-//enum SpecialKeys
-//{
-//	KB_Up = 72,
-//	KB_Down = 80,
-//	KB_Left = 75,
-//	KB_Right = 77,
-//};
+
 
 class Controller
 {
@@ -40,30 +26,32 @@ public:
 	void run(std::string level); //
 	std::string getActiveCharacterName()const;
 
-	auto changeActiveCharacter();
+	void changeActiveCharacter();
+	auto getActive();
 
 	int getSteps()const;
 	void increaseNumOfSteps();
 
+	Board getBoard();
 
+	void print_b();
 	//io
-	//bool readInput();
+	bool readInput();
+	bool theifHasKey() const;
+
 private:
-	Characters m_active_character;
+	short m_active_character;
 	std::string m_activeCharacterName;
-
-	bool handleRegularKey(int c);
-	void handleSpecialKey(std::vector<std::string>& v, int& col, int& row);
-
-	void print_b(std::vector<std::string> v);
 
 	int m_numOfSteps;
 	King m_king;
 	Mage m_mage;
 	Warrior m_warrior;
 	Theif m_theif;
-
 	Board m_board;
 
+	void moveCharc(Location newlocation, auto character);
+	bool handleRegularKey(int c);
+	void handleSpecialKey(int c);
 };
 

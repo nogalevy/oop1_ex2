@@ -6,4 +6,5 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE "main.cpp"
 											 "Warrior.cpp"
 											 "io.cpp"
 											 "Utilities.cpp"
+											 "Controller.cpp"
 											)
