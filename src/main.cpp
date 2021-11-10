@@ -21,6 +21,8 @@
 #include <string>
 #include <cstdlib> // for std::system()
 
+
+
 const int NUM_OF_LEVELS = 1;
 
 
@@ -33,15 +35,17 @@ int main()
 	{
 		std::string level = "level" + std::to_string(i) + ".txt";
 		c.run(level);
+
+		// start level
+		std::system("cls");
+		Screen::resetLocation();
+
+		c.print_b();
+
+		while (!exit)
+		{
+			exit = c.readInput();
+		}
 	}
 
-    std::system("cls");
-    Screen::resetLocation();
-
-	c.print_b();
-
-   /* while (!exit)
-    {
-        exit = c.readInput();
-    }*/
 }
