@@ -9,65 +9,54 @@
 #include "Board.h"
 
 #include <string>
-
-#include <iostream>
-#include <cstdlib> // for std::system()
-#include "io.h"
-
-#include <conio.h>
-#include <vector>
-#include <string>
-
-enum Keys
-{
-	KB_Escape = 27,
-	SpecialKey = 224,
-};
-
-enum SpecialKeys
-{
-	KB_Up = 72,
-	KB_Down = 80,
-	KB_Left = 75,
-	KB_Right = 77,
-};
+//
+//#include <iostream>
+//#include <cstdlib> // for std::system()
+//#include "io.h"
+//
+//#include <conio.h>
+//#include <vector>
+//#include <string>
+//
+//enum Keys
+//{
+//	KB_Escape = 27,
+//	SpecialKey = 224,
+//};
+//
+//enum SpecialKeys
+//{
+//	KB_Up = 72,
+//	KB_Down = 80,
+//	KB_Left = 75,
+//	KB_Right = 77,
+//};
 
 class Controller
 {
 public:
-<<<<<<< Updated upstream
 	Controller(); //initialize board, game characters, num of steps, active character
+	Controller(std::string level); //initialize board, game characters, num of steps, active character
 	void run(std::string level); //
 	std::string getActiveCharacterName()const;
-	auto getActiveCharacter()const;
-	void changeActiveCharacter();
-=======
-	Controller(std::string level); //initialize board, game characters, num of steps, active character
-	void run(); //
-	std::string getActiveCharacterName()const;
+
 	auto changeActiveCharacter();
 
->>>>>>> Stashed changes
 	int getSteps()const;
 	void increaseNumOfSteps();
 
 
 	//io
-	bool readInput();
+	//bool readInput();
 private:
-<<<<<<< Updated upstream
-	Characters m_activeCharacter;
+	Characters m_active_character;
 	std::string m_activeCharacterName;
-=======
 
 	bool handleRegularKey(int c);
 	void handleSpecialKey(std::vector<std::string>& v, int& col, int& row);
 
-
-	Characters m_active_character;
 	void print_b(std::vector<std::string> v);
 
->>>>>>> Stashed changes
 	int m_numOfSteps;
 	King m_king;
 	Mage m_mage;
@@ -77,7 +66,4 @@ private:
 	Board m_board;
 
 };
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes

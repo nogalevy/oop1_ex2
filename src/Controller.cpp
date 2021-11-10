@@ -113,7 +113,7 @@ bool Controller::readInput()
 }
 
 
-bool handleRegularKey(int c)
+bool Controller::handleRegularKey(int c)
 {
 	switch (c)
 	{
@@ -130,7 +130,7 @@ bool handleRegularKey(int c)
 	return false;
 }
 
-void handleSpecialKey(std::vector<std::string>& v, int& col, int& row)
+void Controller::handleSpecialKey(std::vector<std::string>& v, int& col, int& row)
 {
 	auto c = _getch();
 	switch (c)
@@ -162,7 +162,7 @@ void handleSpecialKey(std::vector<std::string>& v, int& col, int& row)
 }
 
 
-void print_b(std::vector<std::string> v)
+void Controller::print_b(std::vector<std::string> v)
 {
 	m_board.printGameData(*this);
 }

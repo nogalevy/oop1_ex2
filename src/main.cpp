@@ -14,8 +14,16 @@
 #include "io.h"
 #include "Controller.h"
 
+#include <iostream>
+
+#include <conio.h>
+#include <vector>
+#include <string>
 
 
+#include <cstdlib> // for std::system()
+
+const int NUM_OF_LEVELS = 1;
 /*
 enum Keys
 {
@@ -56,8 +64,7 @@ int main()
                                 "=    K=",
                                 "=======" };
 
-    int k_col = 5;
-    int k_row = 5;
+   
 
     std::system("cls");
     Screen::resetLocation();

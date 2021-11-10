@@ -28,8 +28,4 @@ private:
 	void printGameData(Controller& c) const;
 	void printBoard() const;
 };
-<<<<<<< Updated upstream
-=======
 
-
->>>>>>> Stashed changes

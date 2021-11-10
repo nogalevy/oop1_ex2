@@ -2,9 +2,7 @@
 
 const int NUM_OF_CHARACTERS = 4;
 
-<<<<<<< Updated upstream
-enum Characters { 
-	KING, MAGE, WARRIOR, THEIF };
+enum Characters { 	KING, MAGE, WARRIOR, THEIF };
 
 /*
 
@@ -27,6 +25,3 @@ int Player::getActiveCharacter() const
 }
 
 */
-=======
-enum Characters { KING, MAGE, WARRIOR, THEIF };
->>>>>>> Stashed changes
