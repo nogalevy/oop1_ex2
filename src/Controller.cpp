@@ -1,16 +1,19 @@
 #include "Controller.h"
+#include "Board.h"
+
 #include <string>
 
 
 Controller::Controller()
-	: m_numOfSteps(0), m_king(King()), m_mage(Mage()), m_warrior(Warrior()), m_theif(Theif())
+	: m_numOfSteps(0), m_king(King()), m_mage(Mage()), m_warrior(Warrior()), m_theif(Theif()), m_board(NULL), m_active_character(KING)
 {
 }
 
 void Controller::run(std::string level)
 {
-	m_board = Board(level, *this);
-	m_board.printToConsole(*this);
+	Board newboard = (Board());
+	m_board = &newboard;
+	m_board-> printToConsole(*this);
 }
 
 
@@ -21,7 +24,7 @@ void Controller::changeActiveCharacter()
 
 bool Controller::theifHasKey() const
 {
-	return m_theif.hasKey;
+	return m_theif.getHasKey();
 }
 
 std::string Controller::getActiveCharacterName()const
@@ -55,7 +58,9 @@ void Controller::increaseNumOfSteps()
 }
 
 
-auto Controller::getActive()
+
+template<typename Character>
+Character Controller::getActiveCharacter()const
 {
 	switch (m_active_character)
 	{
@@ -77,6 +82,7 @@ auto Controller::getActive()
 
 
 //------- io
+template<typename Character>
 bool Controller::readInput()
 {
 	bool exit = false;
@@ -115,10 +121,11 @@ bool Controller::handleRegularKey(int c)
 	return false;
 }
 
+template<typename Character>
 void Controller::handleSpecialKey(int c)
 {
 	Location new_location(0, 0);
-	auto character = getActive();
+	Character character = getActiveCharacter();
 	switch (c)
 	{
 	case KB_Up:
@@ -134,7 +141,7 @@ void Controller::handleSpecialKey(int c)
 		}
 		break;
 	case KB_Down:
-		new_location = Location(character.m_location.row + 1, character.m_location.col);
+		new_location = Location(character.m_location.row + 1, character.m_location.col); //change to get location
 		m_board.getTile(new_location);
 		if (character.isValidMove(m_board.getTile(new_location))) //check is valid
 		{
@@ -171,14 +178,14 @@ void Controller::handleSpecialKey(int c)
 
 void Controller::print_b()
 {
-	m_board.printToConsole(*this);
+	m_board->printToConsole(*this);
 }
 
 
 void Controller::moveCharc(Location newlocation, auto character)
 {
-	m_board.moveSign(newlocation, character.getSymbol());
-	m_board.moveSign(character.getLocation(), character.getObjectOnTile());
+	m_board.moveSymbol(newlocation, character.getSymbol());
+	m_board.moveSymbol(character.getLocation(), character.getObjectOnTile());
 	character.setLocation(newlocation);
 
 	//if theif && key update has_key

@@ -3,8 +3,6 @@
 const int NUM_OF_CHARACTERS = 4;
 
 enum Characters { 	KING, MAGE, WARRIOR, THEIF };
-<<<<<<< HEAD
-=======
 
 
 enum Keys
@@ -32,7 +30,7 @@ private:
 	Characters m_activeCharacter;
 	//sum of steps
 	//if theif has key
-	
+
 };
 
 int Player::getActiveCharacter() const
@@ -41,4 +39,3 @@ int Player::getActiveCharacter() const
 }
 
 */
->>>>>>> 13722a9227ba7fe96dc5ee99957654103ed72ef9

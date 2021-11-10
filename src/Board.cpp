@@ -1,6 +1,6 @@
 #include "Board.h"
-#include "Player.h"
-#include <filesystem>
+#include "controller.h"
+//#include <filesystem>
 
 //using std::filesystem::current_path;
 //#include <unistd.h>
@@ -13,12 +13,13 @@ void Board::printToConsole(Controller& c) const
 
 Board::Board():m_BoardSize(0) {}
 
+template<typename Character>
 Board::Board(std::string level, Controller& c)
 {
 	ifstream flevel;
 	auto line = std::string();
 	int row, col;
-	char tmp[256];
+	//char tmp[256];
 	//cout << current_path() << endl;
 	//std::string level_path = "../../../levels/" + level;
 
@@ -39,7 +40,9 @@ Board::Board(std::string level, Controller& c)
 	for (int i = 0; i < NUM_OF_CHARACTERS; i++)
 	{
 		flevel >> row >> col;
-		//c.getActiveCharacter().setLocation(Location(row, col));
+		Character charc = c.getActiveCharacter();
+		charc.setLocation(Location(row, col));
+
 		//c.changeActiveCharacter();
 	}
 	
@@ -56,6 +59,7 @@ void Board::printBoard()const
 		cout << m_currentBoard[i] << endl;
 }
 
+
 void Board::printGameData(Controller& c) const
 {
 	cout << "Current Active Character: " << c.getActiveCharacterName() << endl;
@@ -65,7 +69,7 @@ void Board::printGameData(Controller& c) const
 	cout << "the key.\n";
 }
 
-void Board::move_symbol(Location loc, char symbol)
+void Board::moveSymbol(Location loc, char symbol)
 {
 	m_currentBoard[loc.row][loc.col] = symbol;
 }

@@ -26,6 +26,7 @@
 const int NUM_OF_LEVELS = 1;
 
 
+template<typename Character>
 int main()
 {
 	Controller c;

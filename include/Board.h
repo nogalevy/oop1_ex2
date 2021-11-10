@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Player.h"
+
 #include <stdio.h>
 #include <fstream>
 #include <cstdlib> //for exit
@@ -7,6 +9,7 @@
 #include <string>
 #include <iostream>
 #include "Location.h"
+//#include "Controller.h"
 
 using std::ifstream;
 using std::cout;
@@ -18,10 +21,11 @@ class Board
 {
 public:
 	Board();
+	template<typename Character>
 	Board(std::string level, Controller& c);
 	void printToConsole(Controller& c) const;
 	int getBoardSize() const;
-	void move_symbol(Location loc, char symbol);
+	void moveSymbol(Location loc, char symbol);
 	char getTile(Location tile)const;
 
 private:

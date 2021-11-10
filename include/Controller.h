@@ -6,7 +6,7 @@
 #include "Mage.h"
 #include "Warrior.h"
 #include "Theif.h"
-#include "Board.h"
+//#include "Board.h"
 #include "Location.h"
 #include "io.h"
 
@@ -17,25 +17,26 @@
 #include <cstdlib>
 #include <string>
 
+class Board;
 
 class Controller
 {
 public:
 	Controller(); //initialize board, game characters, num of steps, active character
-	Controller(std::string level); //initialize board, game characters, num of steps, active character
 	void run(std::string level); //
 	std::string getActiveCharacterName()const;
 
 	void changeActiveCharacter();
-	auto getActive();
+
+	template<typename Character>
+	Character getActiveCharacter()const;
 
 	int getSteps()const;
 	void increaseNumOfSteps();
 
-	Board getBoard();
-
 	void print_b();
 	//io
+	template<typename Character>
 	bool readInput();
 	bool theifHasKey() const;
 
@@ -48,10 +49,13 @@ private:
 	Mage m_mage;
 	Warrior m_warrior;
 	Theif m_theif;
-	Board m_board;
+	Board* m_board;
 
-	void moveCharc(Location newlocation, auto character);
+	template<typename Character>
+	void moveCharc(Location newlocation, Character character);
 	bool handleRegularKey(int c);
+
+	template<typename Character>
 	void handleSpecialKey(int c);
 };
 

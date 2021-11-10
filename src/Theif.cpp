@@ -42,3 +42,8 @@ char Theif::getObjectOnTile()const
 {
 	return object_on_tile;
 }
+
+bool Theif::getHasKey()const
+{
+	return m_hasKey;
+}

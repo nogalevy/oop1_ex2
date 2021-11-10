@@ -13,6 +13,7 @@ public:
 	void setLocation(Location new_loc);
 	char getSymbol()const;
 	char getObjectOnTile()const;
+	bool getHasKey()const;
 private:
 	Location m_location;
 	char object_on_tile;
