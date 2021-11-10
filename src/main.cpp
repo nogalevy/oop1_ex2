@@ -14,9 +14,16 @@
 
 #include <iostream>
 #include <string>
+#include "Controller.h"
+
+int const NUM_OF_LEVELS = 1;
 
 int main()
 {
+	Controller c;
+
+	//for(int i = 1; i <= NUM_OF_LEVELS; i++)
+		//c.run(level);
 
 	return EXIT_SUCCESS;
 }
