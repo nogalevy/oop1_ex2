@@ -1,6 +1,7 @@
 #pragma	once
 
 const int NUM_OF_CHARACTERS = 4;
+const int NUM_OF_LEVELS = 1;
 
 enum Characters { 	KING, MAGE, WARRIOR, THEIF };
 

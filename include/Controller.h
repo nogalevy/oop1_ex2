@@ -45,6 +45,8 @@ private:
 	std::string m_activeCharacterName;
 
 	int m_numOfSteps;
+
+
 	King m_king;
 	Mage m_mage;
 	Warrior m_warrior;
@@ -52,10 +54,10 @@ private:
 	Board* m_board;
 
 	template<typename Character>
-	void moveCharc(Location newlocation, Character character);
+	bool moveCharc(Location newlocation, Character character);
 	bool handleRegularKey(int c);
 
 	template<typename Character>
-	void handleSpecialKey(int c);
+	bool handleSpecialKey(int c);
 };
 
