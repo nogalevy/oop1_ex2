@@ -28,18 +28,21 @@ public:
 
 	void changeActiveCharacter();
 
-	template<typename Character>
-	Character getActiveCharacter()const;
+	//template<typename Character>
+	//Character getActiveCharacter()const;
+	Location getActiveCharacterLocation()const;
+	bool checkValidMove(Location new_location);
 
 	int getSteps()const;
 	void increaseNumOfSteps();
 
 	void print_b();
 	//io
-	template<typename Character>
+	//template<typename Character>
 	bool readInput();
 	bool theifHasKey() const;
 
+	void setCharacterLocation(Location new_location);
 private:
 	short m_active_character;
 	std::string m_activeCharacterName;
@@ -53,11 +56,13 @@ private:
 	Theif m_theif;
 	Board* m_board;
 
-	template<typename Character>
-	bool moveCharc(Location newlocation, Character character);
+	//template<typename Character>
+	char getSymbolC()const;
+	char getObjectOnTile()const;
+	bool moveCharc(Location newlocation);
 	bool handleRegularKey(int c);
 
-	template<typename Character>
-	bool handleSpecialKey(int c);
+	//template<typename Character>
+	bool handleSpecialKey(auto c);
 };
 

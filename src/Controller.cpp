@@ -10,7 +10,7 @@ Controller::Controller()
 
 void Controller::run(std::string level)
 {
-	Board newboard = (Board());
+	Board newboard = (Board(level, *this));
 	m_board = &newboard;
 	m_board-> printToConsole(*this);
 }
@@ -58,30 +58,30 @@ void Controller::increaseNumOfSteps()
 
 
 
-template<typename Character>
-Character Controller::getActiveCharacter()const
-{
-	switch (m_active_character)
-	{
-	default:
-	case 0:
-		return m_king;
-		break;
-	case 1:
-		return m_mage;
-		break;
-	case 2:
-		return m_warrior;
-		break;
-	case 3:
-		return m_theif;
-		break;
-	}
-}
+//template<typename Character>
+//Character Controller::getActiveCharacter()const
+//{
+//	switch (m_active_character)
+//	{
+//	default:
+//	case 0:
+//		return m_king;
+//		break;
+//	case 1:
+//		return m_mage;
+//		break;
+//	case 2:
+//		return m_warrior;
+//		break;
+//	case 3:
+//		return m_theif;
+//		break;
+//	}
+//}
 
 
 //------- io
-template<typename Character>
+//template<typename Character>
 bool Controller::readInput()
 {
 	bool exit = false;
@@ -89,11 +89,12 @@ bool Controller::readInput()
 	Screen::resetLocation();
 
 	auto c = _getch();
+	cout << c;
 	switch (c)
 	{
 	case 0:
 	case SpecialKey:
-		exit = handleSpecialKey(c);
+			exit = handleSpecialKey(c);
 		break;
 	default:
 		exit = handleRegularKey(c);
@@ -120,35 +121,82 @@ bool Controller::handleRegularKey(int c)
 	return false;
 }
 
-template<typename Character>
-bool Controller::handleSpecialKey(int c)
+bool Controller::checkValidMove(Location new_location)
 {
+	char tile = m_board->getTile(new_location);
+	switch (m_active_character)
+	{
+	default:
+	case 0:
+		return m_king.isValidMove(tile);
+		break;
+	case 1:
+		return m_mage.isValidMove(tile);
+		break;
+	case 2:
+		return m_warrior.isValidMove(tile);
+		break;
+	case 3:
+		return m_theif.isValidMove(tile);
+		break;
+	}
+}
+
+Location Controller::getActiveCharacterLocation()const
+{
+	switch (m_active_character)
+	{
+	default:
+	case 0:
+		return m_king.getLocation();
+		break;
+	case 1:
+		return m_mage.getLocation();
+		break;
+	case 2:
+		return m_warrior.getLocation();
+		break;
+	case 3:
+		return m_theif.getLocation();
+		break;
+	}
+}
+//template<typename Character>
+bool Controller::handleSpecialKey(auto c)
+{
+
+	Location characterLocation = getActiveCharacterLocation();
+	cout << c;
 	Location new_location(0, 0);
-	Character character = getActiveCharacter();
+	bool exit = false;
 	switch (c)
 	{
 	case KB_Up:
-		new_location = Location(character.getLocation.row - 1, character.getLocation.col);
+		new_location = Location(characterLocation.row + 1, characterLocation.col); //change to get location
 		break;
 	case KB_Down:
-		new_location = Location(character.getLocation.row + 1, character.getLocation.col); //change to get location
+		new_location = Location(characterLocation.row + 1, characterLocation.col); //change to get location
 		break;
 	case KB_Left:
-		new_location = Location(character.getLocation.row, character.getLocation.col - 1);
+		new_location = Location(characterLocation.row, characterLocation.col - 1);
 		break;
 	case KB_Right:
-		new_location = Location(character.getLocation.row - 1, character.getLocation.col + 1);
-		break;
 	default:
+		new_location = Location(characterLocation.row - 1, characterLocation.col + 1);
 		break;
 	}
-	if (character.isValidMove(m_board.getTile(new_location))) //check is valid
+	if (checkValidMove(new_location)) //check is valid
 	{
-		moveCharc(new_location, character);
+		exit = moveCharc(new_location);
 		//if ontile = @continue next level
 		increaseNumOfSteps();
 		print_b();
 	}
+	else
+	{
+		print_b();
+	}
+	return exit;
 }
 
 void Controller::print_b()
@@ -157,18 +205,79 @@ void Controller::print_b()
 }
 
 
-template<typename Character>
-bool Controller::moveCharc(Location newlocation, Character character)
+//template<typename Character>
+bool Controller::moveCharc(Location newlocation)
 {
 	//if teleporte type && not mage -> find new location
-	m_board.moveSymbol(newlocation, character.getSymbol());
-	m_board.moveSymbol(character.getLocation(), character.getObjectOnTile());
-	character.setLocation(newlocation);
+	m_board ->moveSymbol(newlocation, getSymbolC());
+	m_board->moveSymbol(getActiveCharacterLocation(), getObjectOnTile());
+	setCharacterLocation(newlocation);
 
-	if (m_active_character == KING && character.getObjectOnTile() == '@')
+	if (m_active_character == KING && getObjectOnTile() == '@')
 	{
 		return true;
 	}
 	return false;
 	//if king && @ exit = return true
+}
+
+
+void Controller::setCharacterLocation(Location new_location)
+{
+	switch (m_active_character)
+	{
+	default:
+	case 0:
+		return m_king.setLocation(new_location);
+		break;
+	case 1:
+		return m_mage.setLocation(new_location);
+		break;
+	case 2:
+		return m_warrior.setLocation(new_location);
+		break;
+	case 3:
+		return m_theif.setLocation(new_location);
+		break;
+	}
+}
+
+char Controller::getSymbolC()const
+{
+	switch (m_active_character)
+	{
+	default:
+	case 0:
+		return 'K';
+		break;
+	case 1:
+		return 'M';
+		break;
+	case 2:
+		return 'W';
+		break;
+	case 3:
+		return 'T';
+		break;
+	}
+}
+
+char Controller::getObjectOnTile()const
+{
+	switch (m_active_character)
+	{
+	default:
+	case 0:
+		return m_king.getObjectOnTile();
+		break;
+	case 1:
+		return m_mage.getObjectOnTile();
+		break;
+	case 2:
+		return m_warrior.getObjectOnTile();
+		break;
+	case 3:
+		return m_theif.getObjectOnTile();
+		break;
+	}
 }

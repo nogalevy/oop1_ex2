@@ -22,12 +22,12 @@ class Board
 {
 public:
 	Board();
-	template<typename Character>
+	//template<typename Character>
 	Board(std::string level, Controller& c);
 	void printToConsole(Controller& c) const;
 	int getBoardSize() const;
 	void moveSymbol(Location loc, char symbol);
-	char getTile(Location tile)const;
+	char getTile(Location tile);
 	Location getCellPartner(Location cell)const;
 
 private:

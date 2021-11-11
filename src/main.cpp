@@ -22,11 +22,6 @@
 #include <cstdlib> // for std::system()
 
 
-
-
-
-template<typename Character>
-
 int main()
 {
 	Controller c;
@@ -35,13 +30,15 @@ int main()
 	for(int i = 1; i <= NUM_OF_LEVELS; i++)
 	{
 		std::string level = "level" + std::to_string(i) + ".txt";
-		c.run(level);
 
-		// start level
 		std::system("cls");
 		Screen::resetLocation();
 
-		c.print_b();
+		c.run(level);
+
+		// start level
+
+		//c.print_b();
 
 		while (!exit)
 		{
