@@ -6,7 +6,7 @@
 #include "Mage.h"
 #include "Warrior.h"
 #include "Theif.h"
-//#include "Board.h"
+#include "Board.h"
 #include "Location.h"
 #include "io.h"
 
@@ -17,7 +17,7 @@
 #include <cstdlib>
 #include <string>
 
-class Board;
+//class Board;
 
 class Controller
 {
@@ -44,7 +44,7 @@ public:
 
 	void setCharacterLocation(Location new_location);
 private:
-	short m_active_character;
+	short m_active_character = KING;
 	std::string m_activeCharacterName;
 
 	int m_numOfSteps;
@@ -54,7 +54,8 @@ private:
 	Mage m_mage;
 	Warrior m_warrior;
 	Theif m_theif;
-	Board* m_board;
+
+	Board m_board;
 
 	//template<typename Character>
 	char getSymbolC()const;
