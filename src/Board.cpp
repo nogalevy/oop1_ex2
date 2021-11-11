@@ -97,6 +97,7 @@ void Board::moveSymbol(Location loc, char symbol)
 
 char Board::getTile(Location tile)
 {
+	cout << "but what\n";
 	printBoard();
 	cout << "im here\n";
 	//int i = m_currentBoard.size(); // !!
