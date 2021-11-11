@@ -100,7 +100,7 @@ Location Board::getCellPartner(Location cell)const
 		}
 		else if (m_cells[i]._cellB.row == cell.row && m_cells[i]._cellB.col == cell.row)
 		{
-			cell = m_cells[1]._cellB;
+			cell = m_cells[i]._cellA;
 			return cell;
 		}
 	}
