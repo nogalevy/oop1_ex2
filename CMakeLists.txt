@@ -23,3 +23,4 @@ target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE $<$<CONFIG:DEBUG>:-fsanitiz
 
 add_subdirectory (include)
 add_subdirectory (src)
+add_subdirectory (levels)

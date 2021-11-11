@@ -5,41 +5,42 @@
 //using std::filesystem::current_path;
 //#include <unistd.h>
 
-void Board::printToConsole(Controller& c) const
+void Board::printToConsole() const
 {
 	printBoard();
-	printGameData(c);
+	//printGameData(c);
 }
 
 Board::Board():m_BoardSize(0) {}
 
 //template<typename Character>
-Board::Board(std::string level, Controller& c)
+Board::Board(std::string level)
 	: m_currentBoard()
 {
-	ifstream flevel;
-	auto line = std::string();
-	int row, col;
+	
+	//int row, col;
 	//char tmp[256];
 	//cout << current_path() << endl;
 	//std::string level_path = "../../../levels/" + level;
 
-	flevel.open("../../../levels/" + level);
+	auto flevel = ifstream(level);
 	if (!flevel.is_open())
 	{
 		std::cerr << "Cannont open level file\n";
 		exit(EXIT_FAILURE);
 	}
 
-	flevel >> m_BoardSize;
-
+	auto line = std::string();
+	auto numOfLines = std::string();
+	std::getline(flevel, numOfLines);
+	m_BoardSize = std::stoi(numOfLines);
 	m_currentBoard.reserve(m_BoardSize);
 	for (size_t i = 0; i < m_BoardSize; i++)
 	{
 		std::getline(flevel, line);//get line
 		m_currentBoard.push_back(line);//push to end of file the line
 	}
-	
+	/*
 	for (int i = 0; i < NUM_OF_CHARACTERS; i++)
 	{
 		flevel >> row >> col;
@@ -52,11 +53,13 @@ Board::Board(std::string level, Controller& c)
 	int num_of_cells;
 	flevel >> num_of_cells;
 	int row1, col1, row2, col2;
-	//for (int j = 0; j < num_of_cells; j++)
-	//{
-		//flevel >> row1 >> col1 >> row2, col2;
-	//	m_cells.push_back(Teleport(Location(row1,col1), Location(row2, col2)));
-	//}
+	m_cells.reserve(num_of_cells);
+
+	for (int j = 0; j < num_of_cells; j++)
+	{
+		flevel >> row1 >> col1 >> row2, col2;
+		//m_cells.push_back(Teleport(Location(row1,col1), Location(row2, col2)));
+	}*/
 }
 
 int Board::getBoardSize() const
@@ -66,17 +69,22 @@ int Board::getBoardSize() const
 
 void Board::printBoard()const
 {
+	/*
 	for (size_t i = 0; i < m_currentBoard.size(); i++)
+	{
+		cout << m_currentBoard[i] << endl;
+	}*/
+	for (size_t i = 0; i < m_BoardSize; i++)
 	{
 		cout << m_currentBoard[i] << endl;
 	}
 }
 
 
-void Board::printGameData(Controller& c) const
+void Board::printGameData() const
 {
-	cout << "Current Active Character: " << c.getActiveCharacterName() << endl;
-	cout << "Sum of number of steps: " << c.getSteps() << endl;
+	//cout << "Current Active Character: " << c.getActiveCharacterName() << endl;
+	//cout << "Sum of number of steps: " << c.getSteps() << endl;
 	/*cout << "The Theif ";
 	(c.theifHasKey()) ? cout << "has " : cout << "does not have ";
 	cout << "the key.\n";*/
@@ -89,11 +97,13 @@ void Board::moveSymbol(Location loc, char symbol)
 
 char Board::getTile(Location tile)
 {
-	int i = m_currentBoard.size(); // !!
+	printBoard();
+	cout << "im here\n";
+	//int i = m_currentBoard.size(); // !!
 	
-	std::string curr_row = m_currentBoard[tile.row];
-	return curr_row[tile.col];
-	//return '=';
+	//std::string curr_row = m_currentBoard[tile.row];
+	//return curr_row[tile.col];
+	return '=';
 }
 
 Location Board::getCellPartner(Location cell)const
@@ -111,4 +121,5 @@ Location Board::getCellPartner(Location cell)const
 			return cell;
 		}
 	}
+	
 }

@@ -5,16 +5,16 @@
 
 
 Controller::Controller()
-	: m_numOfSteps(0), m_king(King()), m_mage(Mage()), m_warrior(Warrior()), m_theif(Theif()), m_board(), m_active_character(KING)
+	: m_numOfSteps(0), m_king(King()), m_mage(Mage()), m_warrior(Warrior()), m_theif(Theif()), m_active_character(KING)
 {}
 
 void Controller::run(std::string level)
 {
-	m_board = Board(level, *this);
+	m_board = Board(level);
 	//m_board = &newboard;
 
-	/*m_board = new Board(level, *this);
-	(*m_board).printToConsole(*this);*/
+	 //m_board = new Board(level, *this);
+	m_board.printToConsole();
 }
 
 
@@ -180,7 +180,7 @@ bool Controller::handleSpecialKey(auto c)
 
 void Controller::print_b()
 {
-	m_board.printToConsole(*this);
+	m_board.printToConsole();
 }
 
 

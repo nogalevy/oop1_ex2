@@ -16,15 +16,15 @@ using std::ifstream;
 using std::cout;
 using std::endl;
 
-class Controller;
+//class Controller;
 
 class Board
 {
 public:
 	Board();
 	//template<typename Character>
-	Board(std::string level, Controller& c);
-	void printToConsole(Controller& c) const;
+	Board(std::string level);
+	void printToConsole() const;
 	int getBoardSize() const;
 	void moveSymbol(Location loc, char symbol);
 	char getTile(Location tile);
@@ -36,7 +36,7 @@ private:
 	int m_BoardSize;
 
 
-	void printGameData(Controller& c) const;
+	void printGameData() const;
 	void printBoard() const;
 };
 
