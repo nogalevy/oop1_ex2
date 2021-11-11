@@ -11,37 +11,41 @@ void Board::printToConsole(short charc) const
 	printGameData(charc);
 }
 
-Board::Board():m_BoardSize(0) {}
+Board::Board() :m_BoardSize(0) {}
+
+Board::Board(std::vector <std::string> b) :m_currentBoard(b) , m_BoardSize(b.size()) {}
+
 
 //template<typename Character>
 Board::Board(std::string level)
 	: m_currentBoard()
 {
 	
-	int row, col;
-	//char tmp[256];
-	//cout << current_path() << endl;
-	//std::string level_path = "../../../levels/" + level;
-	auto flevel = ifstream(level);
-	if (!flevel.is_open())
-	{
-		std::cerr << "Cannont open level file\n";
-		exit(EXIT_FAILURE);
-	}
+	//int row, col;
+	////char tmp[256];
+	////cout << current_path() << endl;
+	////std::string level_path = "../../../levels/" + level;
+	//auto flevel = ifstream(level);
+	//if (!flevel.is_open())
+	//{
+	//	std::cerr << "Cannont open level file\n";
+	//	exit(EXIT_FAILURE);
+	//}
 
-	auto line = std::string();
-	auto numOfLines = std::string();
-	
+	//auto line = std::string();
+	//auto numOfLines = std::string();
+	//
 
-	std::getline(flevel, numOfLines);
-	m_BoardSize = std::stoi(numOfLines);
-	m_currentBoard.reserve(m_BoardSize);
+	//std::getline(flevel, numOfLines);
+	//m_BoardSize = std::stoi(numOfLines);
+	//m_currentBoard.reserve(m_BoardSize);
 
-	for (size_t i = 0; i < m_BoardSize; i++)
-	{
-		std::getline(flevel, line);//get line
-		m_currentBoard.push_back(line);//push to end of file the line
-	}
+	//for (size_t i = 0; i < m_BoardSize; i++)
+	//{
+	//	std::getline(flevel, line);//get line
+	//	m_currentBoard.push_back(line);//push to end of file the line
+	//}
+
 
 	/*
 	for (int i = 0; i < NUM_OF_CHARACTERS; i++)
@@ -120,14 +124,12 @@ void Board::moveSymbol(Location loc, char symbol)
 
 char Board::getTile(Location tile)
 {
-	cout << "but what\n";
-	printBoard();
-	cout << "im here\n";
 	//int i = m_currentBoard.size(); // !!
 	
 	//std::string curr_row = m_currentBoard[tile.row];
-	//return curr_row[tile.col];
-	return '=';
+	//if (tile.row > 9 || tile.row < 0 || tile.col > 9 || tile.col < 0) return '=';
+	return m_currentBoard[tile.row][tile.col];
+	
 }
 
 Location Board::getCellPartner(Location cell)const

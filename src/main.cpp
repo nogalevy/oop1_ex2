@@ -44,8 +44,8 @@ int main()
 
 		while (!exit)
 		{
-
 			exit = c.readInput();
+			//Screen::setLocation(Location(3, 4));
 		}
 	}
 

@@ -10,8 +10,43 @@ Controller::Controller()
 
 void Controller::run(std::string level)
 {
-	
-	m_board = Board(level);
+	int row, col;
+	auto flevel = ifstream(level);
+	if (!flevel.is_open())
+	{
+		std::cerr << "Cannont open level file\n";
+		exit(EXIT_FAILURE);
+	}
+
+	auto line = std::string();
+	auto numOfLines = std::string();
+	int BoardSize;
+
+	std::vector <std::string> currentBoard;
+	std::getline(flevel, numOfLines);
+
+	BoardSize = std::stoi(numOfLines);
+	currentBoard.reserve(BoardSize);
+
+	for (size_t i = 0; i < BoardSize; i++)
+	{
+		std::getline(flevel, line);//get line
+		currentBoard.push_back(line);//push to end of file the line
+	}
+
+
+	m_board = Board(currentBoard);
+
+
+	for (int i = 0; i < NUM_OF_CHARACTERS; i++)
+	{
+		flevel >> row >> col;
+		//Character charc = c.getActiveCharacter();
+		setCharacterLocation(Location(row, col));
+		changeActiveCharacter();
+	}
+
+	//m_board = Board(level);
 
 	//m_board = &newboard;
 
@@ -24,6 +59,21 @@ void Controller::changeActiveCharacter()
 {
 	m_active_character = (short)(m_active_character + 1) % NUM_OF_CHARACTERS;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 bool Controller::theifHasKey() const
 {
@@ -69,15 +119,8 @@ bool Controller::readInput()
 	Screen::resetLocation();
 
 	auto c = getch();
+	//c = getch();
 
-	if (c == 'p')
-	{
-		changeActiveCharacter();
-		print_b();
-
-	}
-	return false;
-	/*cout << c;
 	switch (c)
 	{
 	case 0:
@@ -88,7 +131,7 @@ bool Controller::readInput()
 		exit = handleRegularKey(c);
 		break;
 	}
-	return exit;*/
+	return exit;
 }
 
 
@@ -96,10 +139,10 @@ bool Controller::handleRegularKey(int c)
 {
 	switch (c)
 	{
-	case 'P':
+	//case 'P':
 	case 'p':
 		changeActiveCharacter();
-		//change character
+		print_b();
 		break;
 	case KB_Escape:
 		return true;
@@ -153,30 +196,33 @@ Location Controller::getActiveCharacterLocation()const
 //template<typename Character>
 bool Controller::handleSpecialKey(auto c)
 {
+	c = getch();
+
 	Location characterLocation = getActiveCharacterLocation();
-	cout << c;
+	//cout << c;
 	Location new_location(0, 0);
+	int r = characterLocation.row, co = characterLocation.col;
 	bool exit = false;
 	switch (c)
 	{
 	case KB_Up:
-		//check valid index
-		new_location = Location(characterLocation.row + 1, characterLocation.col); //change to get location
+		new_location = Location((r - 1 >= 0 ? r -1 : r), co); //change to get location
 		break;
 	case KB_Down:
-		new_location = Location(characterLocation.row + 1, characterLocation.col); //change to get location
+		new_location = Location((r + 1 < 10 ? r + 1 : r) , co); //change to get location
 		break;
 	case KB_Left:
-		new_location = Location(characterLocation.row, characterLocation.col - 1);
+		new_location = Location(r, ( co - 1 >= 0 ? co - 1  :co));
 		break;
 	case KB_Right:
 	default:
-		new_location = Location(characterLocation.row - 1, characterLocation.col + 1);
+		new_location = Location(r, (co + 1 < 10 ? co + 1 : co));
 		break;
 	}
-	if (checkValidMove(new_location)) //check is valid
+
+	if ((new_location.col < 10) && (new_location.row < 10) && checkValidMove(new_location)) //check is valid
 	{
-		std::cout << "\n" << new_location.row << " " << new_location.col << "\n";
+		//std::cout << "\n" << new_location.row << " " << new_location.col << "\n";
 		exit = moveCharc(new_location);
 		//if ontile = @continue next level
 		increaseNumOfSteps();
@@ -191,6 +237,7 @@ bool Controller::handleSpecialKey(auto c)
 
 void Controller::print_b()
 {
+	Screen::resetLocation();
 	m_board.printToConsole(m_active_character);
 }
 

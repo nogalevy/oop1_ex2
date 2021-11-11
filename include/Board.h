@@ -22,6 +22,7 @@ class Board
 {
 public:
 	Board();
+	Board(std::vector <std::string> b);
 	//template<typename Character>
 	Board(std::string level);
 	void printToConsole(short charc) const;
