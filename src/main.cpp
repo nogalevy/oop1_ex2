@@ -27,28 +27,26 @@ int main()
 	Controller c;
     bool exit = false;
 
+		std::system("cls");
 	for(int i = 1; i <= NUM_OF_LEVELS; i++)
 	{
 		std::string level = "level" + std::to_string(i) + ".txt";
 
-		std::system("cls");
 		Screen::resetLocation();
 
 
 		c.run(level);
 
-		// start level
-
-		//c.print_b();
-		auto ch = getch();
+		//auto ch = getch();
 
 		while (!exit)
 		{
 			exit = c.readInput();
 			//Screen::setLocation(Location(3, 4));
 		}
+		
 	}
 
-	return EXIT_SUCCESS;
+		return EXIT_SUCCESS;
 
 }

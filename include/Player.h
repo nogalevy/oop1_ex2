@@ -1,7 +1,7 @@
 #pragma	once
 
 const int NUM_OF_CHARACTERS = 4;
-const int NUM_OF_LEVELS = 1;
+const int NUM_OF_LEVELS = 3;
 
 enum Characters { KING = 0, MAGE, WARRIOR, THEIF };
 
