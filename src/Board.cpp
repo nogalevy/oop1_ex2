@@ -15,6 +15,7 @@ Board::Board():m_BoardSize(0) {}
 
 //template<typename Character>
 Board::Board(std::string level, Controller& c)
+	: m_currentBoard()
 {
 	ifstream flevel;
 	auto line = std::string();
@@ -31,7 +32,9 @@ Board::Board(std::string level, Controller& c)
 	}
 
 	flevel >> m_BoardSize;
-	for (size_t i = 0; i <= m_BoardSize; i++)
+
+	m_currentBoard.reserve(m_BoardSize);
+	for (size_t i = 0; i < m_BoardSize; i++)
 	{
 		std::getline(flevel, line);//get line
 		m_currentBoard.push_back(line);//push to end of file the line
@@ -49,11 +52,11 @@ Board::Board(std::string level, Controller& c)
 	int num_of_cells;
 	flevel >> num_of_cells;
 	int row1, col1, row2, col2;
-	for (int j = 0; j < num_of_cells; j++)
-	{
-		flevel >> row1 >> col1 >> row2, col2;
+	//for (int j = 0; j < num_of_cells; j++)
+	//{
+		//flevel >> row1 >> col1 >> row2, col2;
 	//	m_cells.push_back(Teleport(Location(row1,col1), Location(row2, col2)));
-	}
+	//}
 }
 
 int Board::getBoardSize() const
@@ -86,7 +89,11 @@ void Board::moveSymbol(Location loc, char symbol)
 
 char Board::getTile(Location tile)
 {
-	return m_currentBoard[tile.row][tile.col];
+	int i = m_currentBoard.size(); // !!
+	
+	std::string curr_row = m_currentBoard[tile.row];
+	return curr_row[tile.col];
+	//return '=';
 }
 
 Location Board::getCellPartner(Location cell)const
