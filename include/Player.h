@@ -3,7 +3,7 @@
 const int NUM_OF_CHARACTERS = 4;
 const int NUM_OF_LEVELS = 1;
 
-enum Characters { KING, MAGE, WARRIOR, THEIF };
+enum Characters { KING = 0, MAGE, WARRIOR, THEIF };
 
 
 enum Keys

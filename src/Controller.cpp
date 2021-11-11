@@ -10,11 +10,13 @@ Controller::Controller()
 
 void Controller::run(std::string level)
 {
+	
 	m_board = Board(level);
+
 	//m_board = &newboard;
 
 	 //m_board = new Board(level, *this);
-	m_board.printToConsole();
+	m_board.printToConsole(m_active_character);
 }
 
 
@@ -34,16 +36,16 @@ std::string Controller::getActiveCharacterName()const
 	{
 	default:
 	case KING:
-		return "King";
+		return "King   ";
 		break;
 	case MAGE:
-		return "Mage";
+		return "Mage   ";
 		break;
 	case WARRIOR:
-		return "Warrior";
+		return "Warrior ";
 		break;
 	case THEIF:
-		return "Theif";
+		return "Theif   ";
 		break;
 	}
 }
@@ -66,8 +68,16 @@ bool Controller::readInput()
 
 	Screen::resetLocation();
 
-	auto c = _getch();
-	cout << c;
+	auto c = getch();
+
+	if (c == 'p')
+	{
+		changeActiveCharacter();
+		print_b();
+
+	}
+	return false;
+	/*cout << c;
 	switch (c)
 	{
 	case 0:
@@ -78,7 +88,7 @@ bool Controller::readInput()
 		exit = handleRegularKey(c);
 		break;
 	}
-	return exit;
+	return exit;*/
 }
 
 
@@ -150,6 +160,7 @@ bool Controller::handleSpecialKey(auto c)
 	switch (c)
 	{
 	case KB_Up:
+		//check valid index
 		new_location = Location(characterLocation.row + 1, characterLocation.col); //change to get location
 		break;
 	case KB_Down:
@@ -180,7 +191,7 @@ bool Controller::handleSpecialKey(auto c)
 
 void Controller::print_b()
 {
-	m_board.printToConsole();
+	m_board.printToConsole(m_active_character);
 }
 
 
@@ -208,6 +219,7 @@ void Controller::setCharacterLocation(Location new_location)
 	default:
 	case KING:
 		return m_king.setLocation(new_location);
+
 		break;
 	case MAGE:
 		return m_mage.setLocation(new_location);

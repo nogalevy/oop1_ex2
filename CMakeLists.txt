@@ -22,5 +22,5 @@ add_executable (${CMAKE_PROJECT_NAME})
 target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE $<$<CONFIG:DEBUG>:-fsanitize=address>)
 
 add_subdirectory (include)
-add_subdirectory (src)
 add_subdirectory (levels)
+add_subdirectory (src)

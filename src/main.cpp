@@ -34,14 +34,17 @@ int main()
 		std::system("cls");
 		Screen::resetLocation();
 
+
 		c.run(level);
 
 		// start level
 
 		//c.print_b();
+		auto ch = getch();
 
 		while (!exit)
 		{
+
 			exit = c.readInput();
 		}
 	}

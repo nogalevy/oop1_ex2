@@ -24,7 +24,7 @@ public:
 	Board();
 	//template<typename Character>
 	Board(std::string level);
-	void printToConsole() const;
+	void printToConsole(short charc) const;
 	int getBoardSize() const;
 	void moveSymbol(Location loc, char symbol);
 	char getTile(Location tile);
@@ -36,7 +36,7 @@ private:
 	int m_BoardSize;
 
 
-	void printGameData() const;
+	void printGameData(short charc) const;
 	void printBoard() const;
 };
 
