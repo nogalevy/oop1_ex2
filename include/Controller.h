@@ -60,7 +60,7 @@ private:
 	//template<typename Character>
 	char getSymbolC()const;
 	char getObjectOnTile()const;
-	bool moveCharc(Location newlocation);
+	bool moveCharc(Location newlocation, char onTile);
 	bool handleRegularKey(int c);
 	void printGameData() const;
 

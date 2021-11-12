@@ -198,7 +198,7 @@ Location Controller::getActiveCharacterLocation()const
 bool Controller::handleSpecialKey(auto c)
 {
 	c = _getch();
-
+	char on_tile;
 	Location characterLocation = getActiveCharacterLocation();
 	//cout << c;
 	Location new_location(0, 0);
@@ -220,11 +220,11 @@ bool Controller::handleSpecialKey(auto c)
 		new_location = Location(r, (co + 1 < 10 ? co + 1 : co));
 		break;
 	}
-
+	on_tile = getObjectOnTile();
 	if ((new_location.col < 10) && (new_location.row < 10) && checkValidMove(new_location)) //check is valid
 	{
 		//std::cout << "\n" << new_location.row << " " << new_location.col << "\n";
-		exit = moveCharc(new_location);
+		exit = moveCharc(new_location, on_tile);
 		//if ontile = @continue next level
 		increaseNumOfSteps();
 		print_b();
@@ -255,11 +255,13 @@ void Controller::printGameData() const
 }
 
 //template<typename Character>
-bool Controller::moveCharc(Location newlocation)
+bool Controller::moveCharc(Location newlocation, char onTile)
 {
 	//if teleporte type && not mage -> find new location
-	m_board.moveSymbol(getActiveCharacterLocation(), getObjectOnTile());
-	m_board.moveSymbol(newlocation, getSymbolC());
+	char cc = getObjectOnTile();
+	char cur = getSymbolC();
+	m_board.moveSymbol(getActiveCharacterLocation(), onTile);
+	m_board.moveSymbol(newlocation, cur);
 	setCharacterLocation(newlocation);
 
 	if (m_active_character == KING && getObjectOnTile() == '@')
