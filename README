@@ -1,11 +1,20 @@
-# oop1_ex1
-OOP1 course ex1
+OOP1 ex2 - Save the King
 
+Written by: Tali Kalev, ID:208629691 ËÏÈ ÎÏ·
+            Noga Levy, ID:315260927 Â‚‰ ÏÂÈ
 
-===========================================================================================
-Classes:
+General Description of the Exercise:
+	In this exercises we were requested to implement a game called Save the King.
+	The goal of the game is to bring the King to his throne with the help of his 
+	friends that all have different abilities. There are three different levels 
+	to the game (more can be added by adding files with the respective information
+	needed). Other than the King there are 3 other interactable characters: Mage,
+	Warrior and Thief. The user controls these characters in order to win the level
+	and subsequently the game.
 
-Characters:
+Design:
+
+Character Classes:
 
 The King = K
 	- GOAL: to sit on chair
@@ -15,25 +24,26 @@ The King = K
 	- can sit on chair
 
 Mage = M
-	- Fancy tools: can put out fires by stepping on tiles on fire (turns them to empty tiles)
-	- can step on empty tiles (and obv those with fire)
-	- can step on tiles with key (cant pick them up)
+	- Abilities: can put out fires by stepping on tiles on fire (turns them to empty tiles)
+	- can step on empty tiles
+	- can step on tiles with key (can't pick them up)
 	- can stand on teleport cell but not use it 
 
 Warrior = W
-	- fancy tools: can fight off orcs like a boss HE ALWAYS WINS
+	- Abilities: can fight off orcs, always wins
 	- turns orc into key upon killing it, tile turns to tile key
-	- can step on empty tiles and ones with orcs, thats how he kills em yall
-	- can step on tiles with key (cant pick them up)
+	- can step on empty tiles and ones with orcs, thatís how he kills them
+	- can step on tiles with key (can't pick them up)
 	- can enter teleport cell
 
-Theif = T
-	- fancy tools: can take keys and open gates with them
+Thief = T
+	- Abilities: can take keys and open gates with them
 	- all keys open all gates (can only hold one key at a time)
 	- can step on empty tiles 
 	- can step on tiles with key
 	- can enter teleport cell 
 	- can step on tiles with gates *if* he has a key (changes it to empty tile)
+
 
 Types of Tiles:
 
@@ -54,16 +64,15 @@ Fire = "*"
 
 Teleport Cell = "X"
 	- type of tile that comes in pairs
-	- all charaters (excluding mage) that enters cell, teleports immediately to
-		parallel port - character disapears from one appears in the other(or next to)
-	- WE CHOOSE IF TELEPORTS INTO OR NEXT TO 
+	- all characters (excluding mage) that enters cell, teleports immediately to
+		parallel port - character disappears from one appears in the other
 	- the tile that the character teleports to is considered the original teleport cell's "partner"
 	- mage cant use but can step on
 	- teleports cells are exclusive
 
 Kings Throne = "@"
 	- only king can sit on the throne
-	- thats how WE WIN THE GAME YO
+	- thatís how we win the level
 
 Additional Objects:
 
@@ -73,26 +82,28 @@ Orc = "!"
 
 Key = F
 	- falls from orc when warrior kills it 
-	- theif can take it
+	- thief can take it
 
 
-===========================================================================================
-
-HOW WE CRY
+Game Implementation:
 
 Keys
 	- P =  changes between characters in a cyclical way
-	- Arrows = moves charater on board, unless not allowed
+	- Arrows = moves character on board, unless not allowed
 	- Escape = ends game
-
-Ending Level/Game
-	- a level ends when king sits on thrown
-	- a message appears at the end of each level/at the end of the game
 
 Game Levels
 	- at least 3 levels
-	- each level will receive required information from file
-	- explanation of files in readme
+	- each level will receive the following required information from file
+		Size of Board
+		Board
+		Location of King
+		Location of Mage
+		Location of Warrior
+		Location of Thief
+		Number of Pairs of Teleporting cells
+		Location of cell 1.1 and 1.2
+		(and more if they exist)
 
 Game Board
 	- after each action the board is updated on the screen (including change in active character)
@@ -102,11 +113,46 @@ Game Board
 		3. if the theif has the key or not
 	- if two objects take up the same space, present the character over the static
 
-===========================================================================================
 
-Notes for Mee-Moosh 
+Name of Files Created:
+	In Include Folder:
+		-Board.h - header of Board.cpp
+		-Controller.h - header of Controller.cpp
+		-io.h
+		-King.h - header of King.cpp
+		-Location.h - contains struct of type location holding indexes
+		-Mage.h - header of Mage.cpp
+		-Player.h - header of Player.cpp
+		-Theif.h - header of Theif.cpp
+		-Utilities.h - contains struct holding teleport cells locations
+		-Warrior.h - header of Warrior.cpp
+	In levels Folder:
+		-level1.txt
+		-level2.txt
+		-level3.txt
+	In src Folder:
+		-Board.cpp - contains functions pertaining to the game board
+		-Controller.cpp - contains functions that use the user input to control the characters/board
+		-io.cpp
+		-King.cpp - contains functions pertaining to the King class character
+		-Mage.cpp - contains functions pertaining to the Mage class character
+		-Theif.cpp - contains functions pertaining to the Thief class character
+		-Warrior.cpp - contains functions pertaining to the Warrior class character
+		-Utilities.cpp
 
+Main Data Structures and their Responsibilities:
+	All 4 playable characters (King, Mage, Warrior, Theif) are defined as class objects.
+	Their appropriate functions contain and receive information regarding location, abilities,
+	capabilities for moves and more. The Board is also classified as a class object in which 
+	contains information regarding the data on the board (including characters). 
 
+There are no notable algorithms that were implemented in this program.
 
+Bugs:
+	The 'p' key switch between the characters but sometimes its not working for some reason
+	when continue to level 2 Mage dosent move
+	when finish game alert msg like in the privious levels and not something for end of the game
+	teleports not working 
 
-
+Additional Notes:
+	We know we have in the code alot of duplicated code

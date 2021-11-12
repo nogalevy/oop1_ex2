@@ -29,6 +29,7 @@ public:
 	void moveSymbol(Location loc, char symbol);
 	char getTile(Location tile);
 	Location getCellPartner(Location cell)const;
+	int get_col_length() const;
 
 private:
 	std::vector <std::string> m_currentBoard;

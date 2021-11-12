@@ -23,6 +23,11 @@ void Board::printBoard()const
 	}
 }
 
+int Board::get_col_length() const
+{
+	return m_currentBoard[0].length();
+}
+
 void Board::printToConsole(short charc) const
 {
 	printBoard();

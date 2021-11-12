@@ -192,11 +192,11 @@ bool Controller::handleSpecialKey(auto c)
 		break;
 	case KB_Right:
 	default:
-		new_location = Location(r, (co + 1 < board_size ? co + 1 : co));
+		new_location = Location(r, (co + 1 < m_board.get_col_length() ? co + 1 : co));
 		break;
 	}
 
-	if ((new_location.col < board_size) && (new_location.row < board_size) &&
+	if ((new_location.col < m_board.get_col_length()) && (new_location.row < board_size) &&
 		(new_location.col >= 0 ) && (new_location.row >= 0) 
 		&& checkValidMove(new_location))
 	{
