@@ -22,7 +22,7 @@ class Board
 {
 public:
 	Board();
-	Board(std::vector <std::string> b);
+	Board(std::vector <std::string> b, int boardSize);
 	//template<typename Character>
 	Board(std::string level);
 	void printToConsole(short charc) const;

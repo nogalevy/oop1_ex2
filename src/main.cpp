@@ -24,15 +24,17 @@
 
 int main()
 {
-	Controller c;
+	
     bool exit = false;
 
-		std::system("cls");
 	for(int i = 1; i <= NUM_OF_LEVELS; i++)
 	{
-		std::string level = "level" + std::to_string(i) + ".txt";
+		Controller c;
 
 		Screen::resetLocation();
+		std::system("cls");
+
+		std::string level = "level" + std::to_string(i) + ".txt";
 
 
 		c.run(level);
@@ -44,8 +46,14 @@ int main()
 			exit = c.readInput();
 			//Screen::setLocation(Location(3, 4));
 		}
+
+		if (!c.endLevelMsg())
+			return EXIT_SUCCESS;
+
+
+		exit = false;
 		
 	}
-		return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 
 }

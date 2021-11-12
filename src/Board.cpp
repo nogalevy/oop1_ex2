@@ -13,7 +13,7 @@ void Board::printToConsole(short charc) const
 
 Board::Board() :m_BoardSize(0) {}
 
-Board::Board(std::vector <std::string> b) :m_currentBoard(b) , m_BoardSize(b.size()) {}
+Board::Board(std::vector <std::string> b, int boardSize) :m_currentBoard(b) , m_BoardSize(boardSize) {}
 
 
 //template<typename Character>

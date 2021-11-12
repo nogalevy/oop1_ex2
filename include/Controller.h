@@ -27,6 +27,7 @@ public:
 	std::string getActiveCharacterName()const;
 
 	void changeActiveCharacter();
+	bool endLevelMsg();
 
 	//template<typename Character>
 	//Character getActiveCharacter()const;

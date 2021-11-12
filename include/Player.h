@@ -8,6 +8,7 @@ enum Characters { KING = 0, MAGE, WARRIOR, THEIF };
 
 enum Keys
 {
+	KB_ENTER = 13,
 	KB_Escape = 27,
 	SpecialKey = 224,
 };
