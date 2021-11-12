@@ -8,7 +8,7 @@
 void Board::printToConsole(short charc) const
 {
 	printBoard();
-	printGameData(charc);
+	//printGameData(charc);
 }
 
 Board::Board() :m_BoardSize(0) {}
@@ -87,35 +87,35 @@ void Board::printBoard()const
 	}
 }
 
-
-void Board::printGameData(short charc) const
-{
-	switch (charc)
-	{
-	case KING:
-		cout << "king   ";
-		break;
-	case MAGE:
-		cout << "mage    ";
-		break;
-
-	case THEIF:
-		cout << "theif   ";
-		break;
-
-	case WARRIOR:
-		cout << "warrior   ";
-		break;
-
-	default:
-		break;
-	}
-	//cout << "Current Active Character: " << c.getActiveCharacterName() << endl;
-	//cout << "Sum of number of steps: " << c.getSteps() << endl;
-	/*cout << "The Theif ";
-	(c.theifHasKey()) ? cout << "has " : cout << "does not have ";
-	cout << "the key.\n";*/
-}
+//
+//void Board::printGameData(short charc) const
+//{
+//	switch (charc)
+//	{
+//	case KING:
+//		cout << "king   ";
+//		break;
+//	case MAGE:
+//		cout << "mage    ";
+//		break;
+//
+//	case THEIF:
+//		cout << "theif   ";
+//		break;
+//
+//	case WARRIOR:
+//		cout << "warrior   ";
+//		break;
+//
+//	default:
+//		break;
+//	}
+//	//cout << "Current Active Character: " << c.getActiveCharacterName() << endl;
+//	//cout << "Sum of number of steps: " << c.getSteps() << endl;
+//	/*cout << "The Theif ";
+//	(c.theifHasKey()) ? cout << "has " : cout << "does not have ";
+//	cout << "the key.\n";*/
+//}
 
 void Board::moveSymbol(Location loc, char symbol)
 {

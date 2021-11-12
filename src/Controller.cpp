@@ -51,7 +51,8 @@ void Controller::run(std::string level)
 	//m_board = &newboard;
 
 	 //m_board = new Board(level, *this);
-	m_board.printToConsole(m_active_character);
+	//m_board.printToConsole(m_active_character);
+	print_b();
 }
 
 
@@ -118,7 +119,7 @@ bool Controller::readInput()
 
 	Screen::resetLocation();
 
-	auto c = getch();
+	auto c = _getch();
 	//c = getch();
 
 	switch (c)
@@ -196,7 +197,7 @@ Location Controller::getActiveCharacterLocation()const
 //template<typename Character>
 bool Controller::handleSpecialKey(auto c)
 {
-	c = getch();
+	c = _getch();
 
 	Location characterLocation = getActiveCharacterLocation();
 	//cout << c;
@@ -237,17 +238,29 @@ bool Controller::handleSpecialKey(auto c)
 
 void Controller::print_b()
 {
+	//std::system("cls"); //?
+
 	Screen::resetLocation();
 	m_board.printToConsole(m_active_character);
+
+	printGameData();
 }
 
+void Controller::printGameData() const
+{
+	cout << "Current Active Character: " << getActiveCharacterName() << "    \n";
+	cout << "Sum of number of steps: " << getSteps() << endl;
+	cout << "The Theif ";
+	(theifHasKey()) ? cout << "has " : cout << "does not have ";
+	cout << "the key.\n";
+}
 
 //template<typename Character>
 bool Controller::moveCharc(Location newlocation)
 {
 	//if teleporte type && not mage -> find new location
-	m_board.moveSymbol(newlocation, getSymbolC());
 	m_board.moveSymbol(getActiveCharacterLocation(), getObjectOnTile());
+	m_board.moveSymbol(newlocation, getSymbolC());
 	setCharacterLocation(newlocation);
 
 	if (m_active_character == KING && getObjectOnTile() == '@')

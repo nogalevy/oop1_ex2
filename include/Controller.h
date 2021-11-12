@@ -62,6 +62,7 @@ private:
 	char getObjectOnTile()const;
 	bool moveCharc(Location newlocation);
 	bool handleRegularKey(int c);
+	void printGameData() const;
 
 	//template<typename Character>
 	bool handleSpecialKey(auto c);
