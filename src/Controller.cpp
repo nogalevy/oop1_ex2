@@ -250,9 +250,8 @@ void Controller::printGameData() const
 {
 	cout << "Current Active Character: " << getActiveCharacterName() << "    \n";
 	cout << "Sum of number of steps: " << getSteps() << endl;
-	cout << "The Theif ";
-	(theifHasKey()) ? cout << "has " : cout << "does not have ";
-	cout << "the key.\n";
+	cout << "Key: ";
+	(theifHasKey()) ? cout << "V" : cout << "X" << endl;
 }
 
 //template<typename Character>
