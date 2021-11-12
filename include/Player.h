@@ -20,24 +20,3 @@ enum SpecialKeys
 	KB_Left = 75,
 	KB_Right = 77,
 };
-/*
-
-class Player
-{
-public:
-	int getActiveCharacter() const;
-	//setplayer
-private:
-	//active player
-	Characters m_activeCharacter;
-	//sum of steps
-	//if theif has key
-
-};
-
-int Player::getActiveCharacter() const
-{
-	return m_activeCharacter;
-}
-
-*/

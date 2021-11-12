@@ -36,20 +36,15 @@ int main()
 
 		std::string level = "level" + std::to_string(i) + ".txt";
 
-
 		c.run(level);
-
-		//auto ch = getch();
 
 		while (!exit)
 		{
 			exit = c.readInput();
-			//Screen::setLocation(Location(3, 4));
 		}
 
 		if (!c.endLevelMsg())
 			return EXIT_SUCCESS;
-
 
 		exit = false;
 		

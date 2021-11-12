@@ -2,9 +2,6 @@
 
 #include "Location.h"
 
-class Controller;
-
-
 class Warrior
 {
 public:

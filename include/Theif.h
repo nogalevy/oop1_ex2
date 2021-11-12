@@ -2,8 +2,6 @@
 
 #include "Location.h"
 
-class Controller;
-
 class Theif
 {
 public:

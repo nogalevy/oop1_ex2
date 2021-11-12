@@ -23,7 +23,6 @@ class Board
 public:
 	Board();
 	Board(std::vector <std::string> b, int boardSize);
-	//template<typename Character>
 	Board(std::string level);
 	void printToConsole(short charc) const;
 	int getBoardSize() const;
@@ -35,7 +34,6 @@ private:
 	std::vector <std::string> m_currentBoard;
 	std::vector <struct Teleport> m_cells;
 	int m_BoardSize;
-
 
 	void printGameData(short charc) const;
 	void printBoard() const;

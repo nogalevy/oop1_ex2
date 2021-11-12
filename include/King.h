@@ -14,7 +14,6 @@ public:
 	char getSymbol()const;
 	char getObjectOnTile()const;
 	
-	//TODO: check with controller which key user clicked and check if is valid to move
 private:
 	Location m_location;
 	char object_on_tile;

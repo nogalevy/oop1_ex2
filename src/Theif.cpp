@@ -1,8 +1,11 @@
 #include "Theif.h"
 
+//==================================================
 
 Theif::Theif() : m_location(Location(0, 0)), object_on_tile(' '), m_hasKey(false)
 {}
+
+//==================================================
 
 bool Theif::isValidMove(char new_tile)
 {

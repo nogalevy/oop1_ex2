@@ -1,8 +1,11 @@
 #include "King.h"
 
+//==================================================
 
 King::King() : m_location(Location(0, 0)), object_on_tile(' ')
 {}
+
+//==================================================
 
 bool King::isValidMove(char new_tile)
 {

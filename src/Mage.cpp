@@ -1,7 +1,11 @@
 #include "Mage.h"
 
+//==================================================
+
 Mage::Mage() : m_location(Location(0, 0)), object_on_tile(' ')
 {}
+
+//==================================================
 
 bool Mage::isValidMove(char new_tile)
 {

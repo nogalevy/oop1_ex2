@@ -1,7 +1,11 @@
 #include "Warrior.h"
 
+//==================================================
+
 Warrior::Warrior() : m_location(Location(0, 0)), object_on_tile(' ')
 {}
+
+//==================================================
 
 bool Warrior::isValidMove(char new_tile)
 {

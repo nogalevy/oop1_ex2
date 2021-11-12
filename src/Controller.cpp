@@ -3,10 +3,13 @@
 
 #include <string>
 
+//==================================================
 
 Controller::Controller()
 	: m_numOfSteps(0), m_king(King()), m_mage(Mage()), m_warrior(Warrior()), m_theif(Theif()), m_active_character(KING)
 {}
+
+//==================================================
 
 void Controller::run(std::string level)
 {
@@ -34,24 +37,14 @@ void Controller::run(std::string level)
 		currentBoard.push_back(line);//push to end of file the line
 	}
 
-
 	m_board = Board(currentBoard, boardSize);
-
 
 	for (int i = 0; i < NUM_OF_CHARACTERS; i++)
 	{
 		flevel >> row >> col;
-		//Character charc = c.getActiveCharacter();
 		setCharacterLocation(Location(row, col));
 		changeActiveCharacter();
 	}
-
-	//m_board = Board(level);
-
-	//m_board = &newboard;
-
-	 //m_board = new Board(level, *this);
-	//m_board.printToConsole(m_active_character);
 	print_b();
 }
 
@@ -60,12 +53,6 @@ void Controller::changeActiveCharacter()
 {
 	m_active_character = (short)(m_active_character + 1) % NUM_OF_CHARACTERS;
 }
-
-
-
-
-
-
 
 
 bool Controller::theifHasKey() const
@@ -108,11 +95,8 @@ void Controller::increaseNumOfSteps()
 bool Controller::readInput()
 {
 	bool exit = false;
-
 	Screen::resetLocation();
-
 	auto c = _getch();
-	//c = getch();
 
 	switch (c)
 	{
@@ -132,7 +116,6 @@ bool Controller::handleRegularKey(int c)
 {
 	switch (c)
 	{
-	//case 'P':
 	case 'p':
 		changeActiveCharacter();
 		print_b();
@@ -186,7 +169,7 @@ Location Controller::getActiveCharacterLocation()const
 		break;
 	}
 }
-//template<typename Character>
+
 bool Controller::handleSpecialKey(auto c)
 {
 	c = _getch();
@@ -239,7 +222,6 @@ void Controller::printGameData() const
 	(theifHasKey()) ? cout << "V" : cout << "X" << endl;
 }
 
-//template<typename Character>
 bool Controller::moveCharc(Location newlocation, char onTile)
 {
 	//if teleporte type && not mage -> find new location
@@ -255,7 +237,6 @@ bool Controller::moveCharc(Location newlocation, char onTile)
 	}
 	return false;
 }
-
 
 void Controller::setCharacterLocation(Location new_location)
 {
@@ -323,8 +304,11 @@ bool Controller::endLevelMsg()
 {
 	Screen::resetLocation();
 	std::system("cls");
-	cout << "YOU FINISHED LEVEL 1 ! :)" << endl;
-	cout << "click enter to continue and esc to exit";
+	cout << "\n * * * * * * * * * * * * * * * * * * * *";
+	cout << "\n * * *   YOU FINISHED THE LEVEL :) * * *";
+	cout << "\n * * * * * * * * * * * * * * * * * * * *";
+
+	cout << "\n\n\n click enter to continue and esc to exit";
 
 	while (true)
 	{
